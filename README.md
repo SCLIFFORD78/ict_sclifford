@@ -6,6 +6,8 @@ Name: Sheamus Clifford
 
 The App is a basic search app for spotify and also allows editing of User playlists and creating playlists
 
+the app was built from the following link https://levelup.gitconnected.com/how-to-create-a-spotify-music-search-app-in-react-1d71c8007e45
+
  
  + Loades top 20 Albums on home page
  + displays user playlists
@@ -5919,20 +5921,12 @@ I ran out of time to implement storybook
 
 ### Routing.
 
-...... Insert a list of the routes supported by your app and state the associated view. If relevant, specify which of the routes require authentication, i.e. protected/private. [For the Movies Fan app, only new routes should be listed.] ......... 
 
-+ GET /blogs - displays all published blogs.
-+ POST /blogs (protected) - add a new blog.
-+ GET /blogs/:id - displays a particular blog.
-+ GET /blogs/:id/comments (protected) - detail view of a particular blog and its comments.
-+ etc.
-+ etc.
++ GET "/userplaylistalbum/:id" - gets a list of user playlist items
++ DELETE "/userplaylistalbum/:id/:removeItem" - Removes item from user playlist
++ GET "/albumTracksPage/:id" - Gets album tracks
+
 
 ## Independent learning (If relevant).
 
-....... Briefly state any technologies/techniques used in your project codebase that was not covered in the lectures/labs. Provide source code filename (source code excerpts are not required in most cases) references to support your assertions and include references (articles/blogs) ......... 
-
-
-[model]: ./data.jpg
-[view]: ./view.png
-[stories]: ./storybook.png
+Getting used to and reading the Spotify API GET, POST, DELETE API requestes was a challenge at times all are located in src/actions/result
