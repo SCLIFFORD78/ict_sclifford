@@ -2,17 +2,14 @@ import React, { useState } from "react";
 
 import {
   initiateGetResult,
-  initiateGetAllNewReleases,
   initiateLoadMoreAlbums,
   initiateLoadMorePlaylist,
   initiateLoadMoreArtists,
 } from "../actions/result";
-import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import SearchResult from "../components/SearchResult";
 import SearchForm from "../components/SearchForm";
 import Loader from "../components/Loader";
-import { useEffect } from "react";
 
 const SearchPage = (props) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -23,13 +20,10 @@ const SearchPage = (props) => {
   const [playlists, setSearchPlaylists] = useState({});
   const [result, setSearchResult] = useState({ albums, artists, playlists });
 
-  //const { albums, artists, playlist } = props;
-  //const result = { albums, artists, playlist };
-
-  const handleSearch = (searchTerm) => {
+  const handleSearch = async (searchTerm) => {
     if (isValidSession()) {
       setIsLoading(true);
-      initiateGetResult(searchTerm).then((response) => {
+      await initiateGetResult(searchTerm).then((response) => {
         setSearchAlbums(response.albums);
         setSearchArtists(response.artists);
         setSearchPlaylists(response.playlists);

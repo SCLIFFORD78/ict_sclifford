@@ -22,6 +22,11 @@ the app was built from the following link https://levelup.gitconnected.com/how-t
 
 Run NPM Install, i have included .env file of my account details to run app from my account
 
+some errors still present:
+
+ + On search page, search needs to be clicked twice
+ + When expanding cards to display tracks, the app will go into error (sometimes), a refresh usually clears the issue and will work again
+
 ## Example of JSON data returned from a search
 
 {
@@ -5912,12 +5917,7 @@ Run NPM Install, i have included .env file of my account details to run app from
 
 I ran out of time to implement storybook
 
-### UI Design.
 
-...... Insert screenshots of the app's views, with appropriate captions (see example below). (For the Movies Fan App, only show the new/modified views) ........
-
-![][view]
->Shows detailed information on a movie. Clicking the 'Reviews' floating action button will display extracts from critic reviews.
 
 ### Routing.
 
