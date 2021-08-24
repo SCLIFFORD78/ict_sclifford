@@ -12,8 +12,9 @@ var num = 0;
 const PlayListAlbumPage = (props) => {
   const { id, removeItem } = props.match.params;
   const [isLoading, setIsLoading] = useState(true);
+  const [tracks, setTracks] = useState({});
   const [selectedCategory, setSelectedCategory] = useState("tracks");
-  var { isValidSession, history, tracks } = props;
+  var { isValidSession, history } = props;
   
   
 
@@ -30,9 +31,10 @@ const PlayListAlbumPage = (props) => {
   useEffect(() => {
     if (isValidSession()) {
       setIsLoading(true);
-      props.dispatch(getPlaylist(id)).then(() => {
+      getPlaylist(id).then((tracks) => {
+        setTracks(tracks)
         setIsLoading(false);
-        setSelectedCategory("tracks");
+
       });
     } else {
       history.push({
@@ -46,13 +48,12 @@ const PlayListAlbumPage = (props) => {
   }, []);
 
   if (Object.keys(tracks).length !== 0 && typeof removeItem !== "undefined") {
-    for (var i = 0; i < tracks.tracks.items.length; i++) {
-      if (tracks.tracks.items[i].track.uri === removeItem) {
+    for (var i = 0; i < tracks.items.length; i++) {
+      if (tracks.items[i].track.uri === removeItem) {
           if (isValidSession()) {
             deleteFromPlaylist(id, removeItem)
-            tracks.tracks.items.splice(i,i+1)
+            tracks.items.splice(i,i+1)
             setSelectedCategory("tracks");
-
           } else {
             history.push({
               pathname: "/",
@@ -82,7 +83,7 @@ const PlayListAlbumPage = (props) => {
             <h4>Playlist: {tracks.name}</h4>
           </div>
           <PlaylistAlbumList
-            tracks={tracks.tracks}
+            tracks={tracks}
             playlistID={id}
             setCategory={setCategory}
             selectedCategory={selectedCategory}

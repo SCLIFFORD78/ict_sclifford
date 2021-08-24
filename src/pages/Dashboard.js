@@ -22,7 +22,9 @@ const Dashboard = (props) => {
 
   useEffect(() => {
     if (isValidSession() ) {
+      setIsLoading(true);
       props.dispatch(initiateGetAllNewReleases());
+      setIsLoading(false)
     } else {
       history.push({
         pathname: '/',

@@ -123,7 +123,7 @@ export const getUserPlaylists = () => {
 };
 
 export const getPlaylist = (playListID) => {
-  return async (dispatch) => {
+  async function call(playListID)  {
     try {
       const API_URL = `https://api.spotify.com/v1/playlists/${playListID}`;
       const headers = {
@@ -133,11 +133,12 @@ export const getPlaylist = (playListID) => {
       };
       const result = await get(API_URL, headers);
       console.log(result);
-      return dispatch(setTracks(result));
+      return result.tracks;
     } catch (error) {
       console.log("error", error);
     }
   };
+  return call(playListID)
 };
 
 export const addToPlaylist = (val, val2) => {
@@ -177,7 +178,7 @@ export const deleteFromPlaylist = (val, val2) => {
       console.log("error", error);
     }
   }
-  call(val, val2);
+  return call(val, val2);
 };
 
 export const getAlbum = (albumID) => {

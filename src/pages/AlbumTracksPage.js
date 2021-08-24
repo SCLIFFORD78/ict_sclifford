@@ -20,14 +20,17 @@ const AlbumTracksPage = (props) => {
   useEffect(() => {
     if (isValidSession()) {
       setIsLoading(true);
-      props.dispatch(getUserPlaylists());
-      props.dispatch(getALbumTracks(id)).then(() => {
-        setSelectedCategory("tracks");
+      props.dispatch(getUserPlaylists()).then(() => {
+        props.dispatch(getALbumTracks(id)).then(() => {
+          setSelectedCategory("tracks");
+          props.dispatch(getAlbum(id)).then(() => {
+            setIsLoading(false);
+            setSelectedCategory("tracks");
+          });
+        });
       });
-      props.dispatch(getAlbum(id)).then(() => {
-        setIsLoading(false);
-        setSelectedCategory("tracks");
-      });
+      
+      
     } else {
       history.push({
         pathname: "/",
